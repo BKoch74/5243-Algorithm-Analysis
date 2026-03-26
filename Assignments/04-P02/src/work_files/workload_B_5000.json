@@ -1,0 +1,82 @@
+[
+    {
+        "op": "insert",
+        "value": 37
+    },
+    {
+        "op": "insert",
+        "value": 80
+    },
+    {
+        "op": "insert",
+        "value": 96
+    },
+    {
+        "op": "insert",
+        "value": 18
+    },
+    {
+        "op": "insert",
+        "value": 73
+    },
+    {
+        "op": "insert",
+        "value": 78
+    },
+    {
+        "op": "insert",
+        "value": 60
+    },
+    {
+        "op": "insert",
+        "value": 60
+    },
+    {
+        "op": "insert",
+        "value": 15
+    },
+    {
+        "op": "insert",
+        "value": 45
+    },
+    {
+        "op": "contains",
+        "value": 37
+    },
+    {
+        "op": "contains",
+        "value": 80
+    },
+    {
+        "op": "contains",
+        "value": 96
+    },
+    {
+        "op": "contains",
+        "value": 18
+    },
+    {
+        "op": "contains",
+        "value": 73
+    },
+    {
+        "op": "contains",
+        "value": 78
+    },
+    {
+        "op": "contains",
+        "value": 60
+    },
+    {
+        "op": "contains",
+        "value": 60
+    },
+    {
+        "op": "contains",
+        "value": 15
+    },
+    {
+        "op": "contains",
+        "value": 45
+    }
+]
