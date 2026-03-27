@@ -16,7 +16,9 @@ int main(int argc,char**argv) {
 
     cout<<linkedList.getCounters();
 
-    linkedList.save("firstrunLinkedList",true);
+    string fname = string(argv[2]);
+
+    linkedList.save(fname,true);
 
 
 

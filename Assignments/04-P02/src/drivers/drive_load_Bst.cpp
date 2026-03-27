@@ -34,11 +34,7 @@ int main(int argc,char**argv) {
 
     cout<<tree.getCounters();
 
-    tree.save("firstrunBST",true);
+    string fname = string(argv[2]);
 
-
-
-
-
-
+    tree.save(fname,true);
 }

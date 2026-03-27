@@ -1,0 +1,8 @@
+{
+    "comparisons": 56558,
+    "deletes": 2436,
+    "inserts": 2500,
+    "lookups": 5064,
+    "resize_events": 3,
+    "structural_ops": 84271
+}
