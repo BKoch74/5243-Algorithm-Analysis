@@ -61,7 +61,7 @@ The linked list is the clear underperformer, with no ordering forcing a full lin
 
 The sorted array's structural operations are dramatically higher than every other structure due to element shifting on every insert. At n=20000 it performs over 91 million structural ops compared to the hash table's 38,000.
 
-[[Workload A Graph]((https://github.com/BKoch74/5243-Algorithm-Analysis/blob/main/Assignments/04-P02/Results_Resources/workload_a_comparisons.html)](https://github.com/BKoch74/5243-Algorithm-Analysis/blob/main/Assignments/04-P02/Results_Resources/workload_a_comparisons.html)
+![workload_a_graph](https://github.com/BKoch74/5243-Algorithm-Analysis/blob/main/Assignments/04-P02/Results_Resources/workload_A.png)
 
 ---
 
@@ -95,6 +95,7 @@ The sorted array, by contrast, actually performs *better* on sorted inserts than
 
 The hash table is completely unaffected by input ordering, as expected. Its comparisons on Workload B are nearly identical to Workload A, confirming that hashing has no sensitivity to key distribution patterns.
 
+![workload_b_graph](https://github.com/BKoch74/5243-Algorithm-Analysis/blob/main/Assignments/04-P02/Results_Resources/workload_B.png)
 ---
 
 ## Workload C — Mixed Operations (Insert / Lookup / Delete)
@@ -133,6 +134,7 @@ The hash table again leads in comparisons, followed closely by the BST and sorte
 
 The sorted array's structural ops are elevated again due to shifting, but less extreme than Workload A since the population size stays smaller as inserts and deletes roughly balance out.
 
+![workload_c_graph](https://github.com/BKoch74/5243-Algorithm-Analysis/blob/main/Assignments/04-P02/Results_Resources/workload_C.png)
 ---
 
 ## Workload D — Heavy Lookup (n inserts, 5n lookups)
@@ -165,6 +167,8 @@ The BST and sorted array perform comparably, both benefiting from O(log n) searc
 
 The linked list approaches 1.8 billion comparisons at n=20000. This is a direct result of linear scanning across a population of ~20,000 elements for each of 100,000 queries. This structure is fundamentally unsuitable for read-heavy workloads.
 
+
+![workload_d_graph](https://github.com/BKoch74/5243-Algorithm-Analysis/blob/main/Assignments/04-P02/Results_Resources/workload_D.png)
 ---
 
 ## Overall Summary
