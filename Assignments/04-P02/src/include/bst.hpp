@@ -7,7 +7,6 @@
 #include <string>
 
 using json = nlohmann::json;
-
 using namespace std;
 
 class Bst
@@ -27,9 +26,8 @@ protected:
     Node *root;
     Counters c{};
 
-    bool insert(Node *&node, int value)
+    bool _insert(Node *&node, int value)
     {
-        c.comparisons++;
         if (!node)
         {
             c.structural_ops++;
@@ -37,78 +35,51 @@ protected:
             return true;
         }
 
-        c.comparisons++;
+        c.comparisons++;        // one comparison per node visited
         if (value < node->data)
-        {
-            return insert(node->left, value);
-        }
-
-        c.comparisons++;
+            return _insert(node->left, value);
         if (value > node->data)
-        {
-            return insert(node->right, value);
-        }
+            return _insert(node->right, value);
 
-        return false;
+        return false;           // duplicate
     }
 
-    bool contains(Node *node, int value)
+    bool _contains(Node *node, int value)
     {
-        c.comparisons++;
         if (!node)
-        {
             return false;
-        }
 
-        c.comparisons++;
+        c.comparisons++;        // one comparison per node visited
         if (value == node->data)
-        {
             return true;
-        }
-
-        c.comparisons++;
         if (value < node->data)
-        {
-            return contains(node->left, value);
-        }
+            return _contains(node->left, value);
 
-        return contains(node->right, value);
+        return _contains(node->right, value);
     }
 
     Node *findMin(Node *node)
     {
-        while (node)
+        while (node && node->left)
         {
             c.comparisons++;
-            if (!node->left)
-            {
-                break;
-            }
             node = node->left;
         }
         return node;
     }
 
-    bool erase(Node *&node, int value)
+    bool _erase(Node *&node, int value)
     {
-        c.comparisons++;
         if (!node)
-        {
             return false;
-        }
 
-        c.comparisons++;
+        c.comparisons++;        // one comparison per node visited
         if (value < node->data)
-        {
-            return erase(node->left, value);
-        }
-
-        c.comparisons++;
+            return _erase(node->left, value);
         if (value > node->data)
-        {
-            return erase(node->right, value);
-        }
+            return _erase(node->right, value);
 
+        // found the node — handle removal
         if (!node->left && !node->right)
         {
             c.structural_ops++;
@@ -138,16 +109,13 @@ protected:
         Node *successor = findMin(node->right);
         c.structural_ops++;
         node->data = successor->data;
-        return erase(node->right, successor->data);
+        return _erase(node->right, successor->data);
     }
 
     void clear(Node *node)
     {
-        c.comparisons++;
         if (!node)
-        {
             return;
-        }
 
         clear(node->left);
         clear(node->right);
@@ -156,18 +124,18 @@ protected:
     }
 
 public:
-    Bst() : root(nullptr)
-    {
-    }
+    Bst() : root(nullptr) {}
 
-    void reset(){
+    void reset()
+    {
         clear(root);
         root = nullptr;
-        c = {}; 
+        c = {};
     }
 
-    void save(string filename,bool dict=true){
-        c.saveCounters(filename,dict);
+    void save(string filename, bool dict = true)
+    {
+        c.saveCounters(filename, dict);
     }
 
     virtual ~Bst()
@@ -175,7 +143,8 @@ public:
         clear(root);
     }
 
-    Counters getCounters(){
+    Counters getCounters()
+    {
         return c;
     }
 
@@ -189,28 +158,28 @@ public:
             string op = element["op"];
             int val = element["value"];
 
-            if (op == "insert") insert(val);
+            if (op == "insert")       insert(val);
             else if (op == "contains") contains(val);
-            else if (op == "delete") erase(val);
+            else if (op == "delete")  erase(val);
         }
     }
 
     bool insert(int value)
     {
-        c.inserts++;
-        return insert(root, value);
+        c.inserts++;            // count every attempt here
+        return _insert(root, value);
     }
 
     bool contains(int value)
     {
         c.lookups++;
-        return contains(root, value);
+        return _contains(root, value);
     }
 
     bool erase(int value)
     {
-        c.deletes++;
-        return erase(root, value);
+        c.deletes++;            // count every attempt here
+        return _erase(root, value);
     }
 
     virtual const char *name() const

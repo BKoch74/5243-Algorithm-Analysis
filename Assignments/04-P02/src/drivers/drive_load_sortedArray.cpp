@@ -16,5 +16,7 @@ int main(int argc,char**argv) {
 
     cout<<sortedArraySet.getCounters();
 
-    sortedArraySet.save("firstrunSortedArraySet",true);
+    string fname = string(argv[2]);
+
+    sortedArraySet.save(fname,true);
 }
