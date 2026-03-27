@@ -61,7 +61,7 @@ The linked list is the clear underperformer, with no ordering forcing a full lin
 
 The sorted array's structural operations are dramatically higher than every other structure due to element shifting on every insert. At n=20000 it performs over 91 million structural ops compared to the hash table's 38,000.
 
-![]()
+![workload_a](https://github.com/BKoch74/5243-Algorithm-Analysis/blob/main/Assignments/04-P02/Results_Resources/workload_A.png)
 
 ---
 
